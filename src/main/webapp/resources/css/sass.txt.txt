@@ -1,0 +1,4 @@
+
+use below command  to get master.css
+
+D:\boone\scss>sass style.scss ../css/master.css

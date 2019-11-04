@@ -1,0 +1,234 @@
+html, body {
+    height: 100%;
+  }
+  
+  .ri-grid{
+      margin: 0 auto;
+      position: relative;
+      height: auto;
+  }
+  
+  .ri-grid ul {
+      list-style: none;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  
+  /* Clear floats by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+  
+  .ri-grid ul:before,
+  .ri-grid ul:after{
+      content: '';
+      display: table;
+  }
+  
+  .ri-grid ul:after {
+      clear: both;
+  }
+  
+  .ri-grid ul {
+      zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+  } 
+  
+  .ri-grid ul li {
+      -webkit-perspective: 400px;
+      -moz-perspective: 400px;
+      -o-perspective: 400px;
+      -ms-perspective: 400px;
+      perspective: 400px;	
+      margin: 0;
+      padding: 0;
+      float: left;
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: #000;
+  }
+  
+  .ri-grid ul li a {
+      display: block;
+      outline: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-background-size: 100% 100%;
+      -moz-background-size: 100% 100%;
+      background-size: 100% 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #333;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+  }
+  
+  /* Grid wrapper sizes */
+  .ri-grid-size-1{
+      width: 55%;
+  }
+  .ri-grid-size-2{
+      width: 100%;
+  }
+  .ri-grid-size-3{
+      width: 100%;
+      margin-top: 0px;
+  }
+  
+  /* Shadow style */
+  .ri-shadow:after,
+  .ri-shadow:before{
+      content: "";
+      position: absolute;
+      z-index: -2;
+      bottom: 15px;
+      left: 10px;
+      width: 50%;
+      height: 20%;
+      max-width: 300px;
+      max-height: 100px;
+      box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+      -webkit-transform: rotate(-3deg);
+      -moz-transform: rotate(-3deg);
+      -ms-transform: rotate(-3deg);
+      -o-transform: rotate(-3deg);
+      transform: rotate(-3deg);
+  }
+  .ri-shadow:after{
+      right: 10px;
+      left: auto;
+      -webkit-transform: rotate(3deg);
+      -moz-transform: rotate(3deg);
+      -ms-transform: rotate(3deg);
+      -o-transform: rotate(3deg);
+      transform: rotate(3deg);
+  }
+  
+  .ri-grid-loading:after,
+  .ri-grid-loading:before{
+      display: none;
+  }
+  
+  .ri-loading-image{
+      display: none;
+  }
+  
+  .ri-grid-loading .ri-loading-image{
+      background-image: url("../img/loading.gif") !important;
+      background-color: #dee5eb !important;
+      background-repeat:no-repeat !important;
+      background-position:center !important;
+      position: relative;
+      border:0px !important;
+        height:30px !important;
+        width:33px !important;
+        border-radius: 5% !important;
+        padding: 20px !important; 
+      left: 50%;
+      margin: 15px 0 0 -30px;
+      display: block;
+  }
+  
+  
+  .errorInfo  {margin-bottom:15px}
+  .errorInfo span { font-weight:bold; color:#00235d}
+
+  
+  .errorTips { list-style-type:none; margin:0; padding:0; font-size:22px}
+
+  .errorTips span {color:#00235d}
+  
+  #stacktrace {display:none}
+  #stacktrace  { font-size:17px; line-height:18px; margin-bottom:15px}
+  
+  
+  a#showstack {
+      font-size: 1em;
+      color: gray;
+      text-decoration: none;
+      width: 1em;
+      height: 1em;
+      line-height: 1em;
+      text-align: center;
+      font-family: sans-serif;
+  
+  }
+  
+  
+  
+  
+  a:active, a:focus {
+      outline-style: none;
+  }
+  
+  a.up { display:block; width:20px; height:13px; margin-left:5px; background: url(../img/errorUpArrow.png) 0 7px no-repeat; }
+  a.down { display:block; width:20px; height:13px; margin-left:5px; background: url(../img/errorDownArrow.png) 0 7px no-repeat; }
+  
+  .errorFooter {padding:10px 40px 10px 40px; width:100%; height:70px; font-family:'Arial', sans-serif; font-size:20px; color:#fff; background:#8392a9;}
+  
+  
+  .codrops-header-special {
+      left: 0;
+      position: absolute;
+      text-align: left;
+      top: 80px;
+      z-index: 999;
+  }
+  .codrops-header-special h2 {
+      background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+      color: #fff;
+      line-height: 26px;
+      padding: 5px 20px 5px 10px;
+  }
+  .codrops-header-special h1 {
+      background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+      color: #fff;
+      display: inline-block;
+      font-size: 40px;
+      line-height: 32px;
+      padding: 20px;
+      text-shadow: 0 0 1px #fff;
+  }
+  .codrops-header-special .codrops-demos {
+      text-align: left;
+  }
+  .codrops-header-special .codrops-demos a {
+      background: rgba(255, 255, 255, 1) none repeat scroll 0 0;
+  }
+  .codrops-header-special .codrops-info {
+      background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+      color: #fff;
+      line-height: 26px;
+      margin-top: 30px;
+      padding: 5px 20px 5px 10px;
+      text-align: left;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  
+  
+  #loginForm .form-control {
+      height:40px;
+      }
+      
+  #loginForm input[type="text"], input[type="password"]{
+      background-color: #fff !important;
+  }
+  
+
+  /* #loginForm{
+	margin: 25%;
+	width: 100%;
+} */

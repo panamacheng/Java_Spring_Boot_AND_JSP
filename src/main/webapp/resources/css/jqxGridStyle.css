@@ -1,0 +1,154 @@
+.jqx-widget-header {
+    background: #fff none repeat scroll 0 0;
+    color: #00245e;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.jqx-fill-state-hover {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    background: #fff none repeat scroll 0 0;
+    border-color: #f7f7f7;
+}
+
+.jqx-fill-state-normal {
+    background: #fff none repeat scroll 0 0;
+    border-color: #f7f7f7;
+    box-sizing: content-box;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+}
+
+.jqx-fill-state-pressed {
+    background: #fff none repeat scroll 0 0;
+    border-color: #f7f7f7;
+    box-sizing: content-box;
+}
+html [type="button"]{
+    -webkit-appearance: none !important;
+
+}
+
+/*.jqx-widget {
+    color: #455772;
+    font-family: Arial;
+}*/
+
+.jqx-widget .jqx-grid-cell,
+.jqx-widget .jqx-grid-column-header,
+.jqx-widget .jqx-grid-group-cell {
+    border-color: #ccc;
+}
+
+#pagerjqxgrid {
+    font-size: 13px;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#pagerjqxgrid div {
+    float: left
+}
+
+#pagerjqxgrid input[name=page-number] {
+    height: 17px!important;
+    font-size: 12px
+}
+
+.jqx-grid-cell-selected {
+    background: #f7f7f7
+}
+
+.jqx-grid-pager {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: #bfd3ed;
+    /*  border-color: transparent -moz-use-text-color -moz-use-text-color;*/
+    border-image: none;
+    border-style: solid none none;
+    border-width: 1px medium medium;
+    -moz-border-top-colors: #ccc;
+    -moz-border-top-colors: #ccc;
+}
+
+.jqx-grid-content.jqx-widget-content {
+    background: #fff none repeat scroll 0 0;
+    border-color: #99bce8;
+    box-sizing: content-box;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+}
+
+.jqx-checkbox-default {
+    border-color: #aaa!important
+}
+
+.jqx-item {
+    color: #777777;
+}
+
+.jqx-grid-cell-left-align {
+    margin: 5px;
+}
+
+.jqx-icon-arrow-right,
+.jqx-icon-arrow-right-hover,
+.jqx-icon-arrow-right-selected {
+    background-position: right;
+}
+
+.jqx-icon-arrow-left,
+.jqx-icon-arrow-left-hover,
+.jqx-icon-arrow-left-selected {
+    background-position: left;
+}
+
+#pagerjqxgrid [type="button"] {
+    -webkit-appearance: none;
+    border: none;
+}
+
+#pagerjqxgrid .jqx-fill-state-pressed {
+    border-color: transparent;
+    box-sizing: content-box;
+    background-color: #5D86C1;
+    color: #fff !important;
+}
+
+#pagerjqxgrid .jqx-grid-pager-number {
+    position: relative;
+    top: 1px;
+}
+
+.jqx-rc-all {
+    border-radius: 0!important;
+}
+
+#gridmenujqxgrid .jqx-menu-ul .filter .jqx-rc-all {
+    border: 1px solid #ccc;
+}
+
+#gridmenujqxgrid .jqx-menu-ul .filter .jqx-widget {
+    color: #455772;
+    font-family: Arial;
+}
+
+.jqx-fill-state-focus,
+.jqx-menu-item-top-hover {
+    border-color: #999;
+    border-radius: 0px;
+}
+
+#gridmenujqxgrid.jqx-menu-vertical {
+    background-color: #fff;
+}
+
+#listBoxfilter1jqxgrid .jqx-rc-all:hover,
+#listBoxfilter1jqxgrid .jqx-listitem-state-selected {
+    border-radius: 0!important;
+    border: 1px solid #ccc;
+}

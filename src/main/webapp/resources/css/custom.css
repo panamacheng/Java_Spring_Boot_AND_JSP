@@ -1,0 +1,106 @@
+
+aside li.nav-item {
+    position: relative;
+}
+
+/* li.nav-item:hover a {
+    background: #fff;
+    color: #00245d;
+} */
+
+aside li.nav-item a,
+aside li.nav-item a+.dropdown-content {
+    display: none;
+}
+
+aside .dropdown-content {
+    position: absolute;
+    left: 55px;
+    width: auto;
+    top: 15px;
+    background: #ddd;
+    color: #ccc;
+    display: none;
+    min-width: max-content;
+}
+
+aside .dropdown-content .menu-header {
+    background: #ddd;
+    padding: 8px 15px;
+    color: #333;
+    border: 1px solid #efefef;
+}
+
+aside .dropdown-content .menu-body {
+    background: #fff;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+aside li.nav-item:hover a,
+aside li.nav-item:hover a+.dropdown-content {
+    display: block;
+    min-width: -moz-max-content;
+}
+
+aside .dropdown-content:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    background: transparent;
+    border-style: solid;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 20px solid #f8f9fa;
+    border-left: 0px;
+    top: 5px;
+}
+
+aside li a.menu-link {
+    color: #333;
+    padding: 5px 15px;
+    text-decoration: none;
+}
+
+aside li a.menu-link:hover {
+    background-color: #f8f9fa;
+}
+
+.footer-nav-center {
+    margin: 0 auto;
+}
+.footer-nav-center .nav-item{
+        line-height: 15px;
+}
+.footer-nav-center .nav-item a {
+    border-right: 2px solid #fff;
+    line-height: 11px;
+    margin: 5px 0px;
+    padding-right: 12px !important;
+    margin-right: 5px;
+}
+/* edge fix */
+.chosen-container-multi .chosen-choices li.search-field input[type='text']{
+    font-family: Arial;
+}
+.nav-tabs .nav-link, .nav-tabs .nav-item.show .nav-link {
+    font-weight: bold;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+ font-weight: bold;
+    background-color: #fff;
+    border-color: #dee2e6;
+    background: #fff;
+}
+
+.dropdown-menu a.dropdown-item{
+    color: #8e3840;
+}
+
+.dropdown-menu a:active, .dropdown-item.active, .dropdown-item:active {
+    color: #fff !important;
+    text-decoration: none;
+    background-color: #777;
+}
+
