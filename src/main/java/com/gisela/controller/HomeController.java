@@ -1,10 +1,18 @@
 package com.gisela.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +40,39 @@ public class HomeController {
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("application-setup");
+
+		Map model = new HashMap<>();
+		try {
+			Properties config = new Properties();
+			Properties dbconfig = new Properties();
+			config.load(new ClassPathResource("application.properties").getInputStream());
+			dbconfig.load(new ClassPathResource("db.properties").getInputStream());
+
+			model.put("ldap_host", config.getOrDefault("ldap.host", ""));
+			model.put("ldap_port", config.getOrDefault("ldap.port", ""));
+			model.put("ldap_username", config.getOrDefault("ldap.username", ""));
+			model.put("ldap_password", config.getOrDefault("ldap.password", ""));
+
+			model.put("baseUrl", config.getOrDefault("baseUrl", ""));
+			model.put("logFilePath", config.getOrDefault("logFilePath", ""));
+
+			model.put("smtp_server", config.getOrDefault("smtp.server", ""));
+			model.put("smtp_port", config.getOrDefault("smtp.port", ""));
+			model.put("smtp_username", config.getOrDefault("smtp.username", ""));
+			model.put("smtp_password", config.getOrDefault("smtp.password", ""));
+
+			model.put("spring_datasource_db", dbconfig.getOrDefault("spring.datasource.db", ""));
+			model.put("spring_datasource_hostname", dbconfig.getOrDefault("spring.datasource.hostname", ""));
+			model.put("spring_datasource_port", dbconfig.getOrDefault("spring.datasource.port", ""));
+			model.put("spring_datasource_username", dbconfig.getOrDefault("spring.datasource.username", ""));
+			model.put("spring_datasource_password", dbconfig.getOrDefault("spring.datasource.password", ""));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		mv.addAllObjects(model);
 		return mv;
 	}
 	@RequestMapping(value="/manager", method=RequestMethod.GET)

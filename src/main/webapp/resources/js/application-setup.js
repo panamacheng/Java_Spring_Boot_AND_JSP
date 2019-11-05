@@ -34,6 +34,7 @@
             var ldapBaseDN = false;
             var ldapAdditionUserDN = false;
             var ldapAdministration = false;
+            var dbValidated = false;
 	        $('#inpBaseUrl').keyup(function(){	 
 				validatBaseUrl(this.value);
 	        });
@@ -274,11 +275,13 @@
 				if(!dbValidated && dbHostName && dbPort && dbUserName && dbPassword && dbName){
 					var params = {"host": $("#inpDBHostName").val(), "port" : $("#inpDBPort").val(), "username": $("#inpDBUserName").val(), "password" : $("#inpDBPassword").val(), "databaseName" : $("#inpDBName").val()};
 					$.post('/api/application-setup/validate-db', params, function(data){
-						alert("Database Validated")
+						dbValidated = true;
+						alert("Database Validated");
 					}).fail(function(response){
+						dbValidated = false;
 						var json = JSON.parse(response.responseText);
 						$("#error_msg").html(json.message);
-						alert("Database not Validated")
+						alert("Database not Validated");
 					});
 				}
 			}
@@ -288,6 +291,11 @@
             $('#submitForm').click(function(e) {
                 // reference to form object
             // var form = this;           
+            	if(dbValidated){
+            		alert("Kindly first validate Database configuration");
+            		return false;
+            	}
+            	
                 e.preventDefault();   // for stopping the default action of element 
                 if(baseUrl && logFilePath && smtpPort && dbHostName &&
                 		dbPort && dbUserName && dbPassword && dbName && ldapHostName &&

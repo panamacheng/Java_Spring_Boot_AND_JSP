@@ -8,8 +8,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
 import javax.sql.DataSource;
 
 import org.apache.commons.lang.StringUtils;
@@ -23,7 +31,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
+import com.gisela.entity.AppConfig;
 import com.gisela.exception.GiselaApplicationException;
+import com.gisela.repository.AppConfigRepository;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -47,6 +57,8 @@ public class ApplicationSetupService {
 	@Value("${db.databaseUrl}")
 	private String databaseUrl;
 	
+
+	//@Autowired AppConfigRepository appConfigRepository;
 	
 	public void setupDatabaseConfigration(String host, int port, String username, String password, String db) {
 		
@@ -86,7 +98,9 @@ public class ApplicationSetupService {
 			new ScriptRunner(ds.getConnection()).runScript(new FileReader(new ClassPathResource("script/schema.sql").getFile()));
 
 			Properties props = new Properties();
-			props.setProperty("spring.datasource.url", ds.getJdbcUrl());
+			props.setProperty("spring.datasource.db", db);
+			props.setProperty("spring.datasource.hostname", host);
+			props.setProperty("spring.datasource.port", port+"");
 			props.setProperty("spring.datasource.username", username);
 			props.setProperty("spring.datasource.password", password);
 			props.setProperty("spring.datasource.driverClassName", ds.getDriverClassName());
@@ -110,4 +124,31 @@ public class ApplicationSetupService {
 		}
 		
 	}
+	
+	/*
+	 * public void saveAppConfig(List<AppConfig> appConfigs) {
+	 * appConfigs.stream().map(ac -> appConfigRepository.save(ac)); }
+	 */
+
+	public boolean validateLdap(String host, Integer port, String username, String password) {
+
+		Hashtable<String, String> env = new Hashtable<String, String>();
+		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.PROVIDER_URL, String.format("ldap://%s:%d/", host, port));
+		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_PRINCIPAL, username); // replace with user DN
+		env.put(Context.SECURITY_CREDENTIALS, password);
+
+		DirContext ctx = null;
+		
+		try {
+	         ctx = new InitialDirContext(env);
+	         return true;
+		} catch (NamingException e) {
+	         throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");	         
+		}		
+
+	}
+
+
 }

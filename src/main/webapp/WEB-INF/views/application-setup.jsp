@@ -488,7 +488,7 @@
 											<h5 class="m-0 pt-1">Hostname </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBHostName" class="form-control  asset-basics" name = "spring.database.hostname">
+											<input type="text" id="inpDBHostName" class="form-control  asset-basics" name = "spring.datasource.hostname" value="${spring_datasource_hostname}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iDBHostName" aria-hidden="true"></i>
@@ -505,7 +505,7 @@
 											<h5 class="m-0 pt-1">Port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBPort" class="form-control  asset-basics" name = "spring.datasource.port">
+											<input type="text" id="inpDBPort" class="form-control  asset-basics" name = "spring.datasource.port" value="${spring_datasource_port}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" aria-hidden="true" id="iDBPort"></i>
@@ -522,7 +522,7 @@
 											<h5 class="m-0 pt-1">Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" class="form-control  asset-basics" id ="inpDBUserName" name = "spring.datasource.username">
+											<input type="text" class="form-control  asset-basics" id ="inpDBUserName" name = "spring.datasource.username" value="${spring_datasource_username}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id ="iDBUserName" aria-hidden="true"></i>
@@ -540,11 +540,12 @@
 											<passwor></passwor>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBPassword" class="form-control  asset-basics" name = "spring.datasource.password">
+											<input type="text" id="inpDBPassword" class="form-control  asset-basics" name = "spring.datasource.password" value="${spring_datasource_password}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2"  id = "iDBPassword" aria-hidden="true"></i>
 												</span>
+												
 											</div>
 										</div>
 										<small id="helpId" class="col-12 form-text text-muted">
@@ -556,7 +557,7 @@
 											<h5 class="m-0 pt-1">Database Name</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBName" class="form-control  asset-basics" name = "spring.datasource.name">
+											<input type="text" id="inpDBName" class="form-control  asset-basics" name = "spring.datasource.name" value="${spring_datasource_db}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iDBName" aria-hidden="true"></i>
