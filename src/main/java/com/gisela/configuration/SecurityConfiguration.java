@@ -1,5 +1,6 @@
 package com.gisela.configuration;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -25,32 +26,6 @@ import com.gisela.ldap.CustomLdapUserDetailsContextMapper;
 @EnableWebSecurity
 public class SecurityConfiguration
 {
-	@SuppressWarnings("unused")
-	private static String LDAP_URL;
-
-	@Value("${ldap.url}")
-	private void setLDAPURL(String property)
-	{
-		LDAP_URL = property;
-	}
-
-	@SuppressWarnings("unused")
-	private static String LDAP_MANAGER_DN;
-
-	@Value("${ldap.managerDN}")
-	private void setLDAPManagerDN(String property)
-	{
-		LDAP_MANAGER_DN = property;
-	}
-
-	@SuppressWarnings("unused")
-	private static String LDAP_MANAGER_PASSWORD;
-
-	@Value("${ldap.managerPassword}")
-	private void setLDAPManagerPassword(String property)
-	{
-		LDAP_MANAGER_PASSWORD = property;
-	}
 
 	@SuppressWarnings("unused")
 	private static String GROUP_SEARCH_BASE;
@@ -99,6 +74,30 @@ public class SecurityConfiguration
 	public static class MVCWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter
 	{
 
+		@Value("${ldap.valid}")
+		String ldapValid = "false";
+
+		@Value("${ldap.host}")
+		String ldapHost = "localhost";
+
+		@Value("${ldap.port}")
+		String ldapPort = "389";
+
+		@Value("${ldap.username}")
+		String ldapUsername = "389";
+
+		@Value("${ldap.password}")
+		String ldapPassword = "389";
+
+		@Value("${ldap.base.dn}")
+		String ldapBaseDn = "389";
+		
+		@Value("${ldap.user.dn}")
+		String ldapUserDn = "389";
+
+		@Value("${ldap.administration}")
+		String ldapAdmistration = "389";
+
 		@Bean
 		public LdapAuthoritiesPopulator ldapAuthoritiesPopulator() throws Exception {
 			DefaultLdapAuthoritiesPopulator ldapAuthoritiesPopulator = new DefaultLdapAuthoritiesPopulator(
@@ -109,9 +108,10 @@ public class SecurityConfiguration
 
 		@Bean
 		public DefaultSpringSecurityContextSource ldapContextSource() throws Exception {
-			DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(LDAP_URL);
-			contextSource.setUserDn(LDAP_MANAGER_DN);
-			contextSource.setPassword(LDAP_MANAGER_PASSWORD);
+			String url = String.format("ldap://%s:%s/%s", ldapHost, ldapPort, ldapBaseDn);
+			DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(url);
+			contextSource.setUserDn(String.format("%s=%s,%s", ldapUserDn, ldapUsername, ldapBaseDn));
+			contextSource.setPassword(ldapPassword);
 			return contextSource;
 		}
 
@@ -139,8 +139,10 @@ public class SecurityConfiguration
 
 		protected void configure(HttpSecurity http) throws Exception
 		{
-			http.authenticationProvider(ldapAuthenticationProvider())
-				.exceptionHandling().accessDeniedPage("/login?error").and()
+			if(StringUtils.defaultIfBlank(ldapValid, "false").equals("true")) {
+				http.authenticationProvider(ldapAuthenticationProvider());
+			}
+				http.exceptionHandling().accessDeniedPage("/login?error").and()
 				.authorizeRequests()
 					.antMatchers("/login**").permitAll()
 					.antMatchers("/resources/**").permitAll()

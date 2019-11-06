@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.io.ClassPathResource;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gisela.configuration.SecurityConfiguration;
@@ -85,48 +87,5 @@ public class AdministratorController {
 //
 //		return new ResponseEntity<String>("success", HttpStatus.OK);
 //	}
-	@PostMapping("/saveConfiguration")
-	public ResponseEntity<String> saveConfiguration(@RequestBody Map<String, String> request){
-		System.out.println("Coming");
-		PropertiesConfiguration config;
-		try {
-			System.out.println("coming in properties");
-			
-			String ldapHost = request.get("ldap.hostname");
-			String ldapPort = request.get("ldap.port");
-			String ldapUsername = request.get("ldap.username");
-			String ldapPassword = request.get("ldap.password");
-			
-			if(!applicationSetupService.validateLdap(ldapHost, Integer.valueOf(ldapPort), ldapUsername, ldapPassword)) {
-				throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");
-			}
-			
-			config = new PropertiesConfiguration(new ClassPathResource("application.properties").getFile());
-			
-			config.setProperty("ldap.host", ldapHost);
-			config.setProperty("ldap.port", ldapPort);
-			config.setProperty("ldap.username", ldapUsername);
-			config.setProperty("ldap.password", ldapPassword);
-			config.setProperty("ldap.url", String.format("ldap://%s:%s/dc=devpamplona,dc=es", ldapHost, ldapPort));
-			config.setProperty("ldap.managerDN", String.format("uid=%s,ou=Users,dc=devpamplona,dc=es", ldapUsername));
-			config.setProperty("ldap.managerPassword", ldapPassword);
-
-			config.setProperty("baseUrl", request.get("baseUrl"));
-			config.setProperty("logFilePath", request.get("logFilePath"));
-
-			config.setProperty("smtp.server", request.get("smtp.server"));
-			config.setProperty("smtp.port", request.get("smtp.port"));
-			config.setProperty("smtp.username", request.get("smtp.username"));
-			config.setProperty("smtp.password", request.get("smtp.password"));
-
-			config.setProperty("somekey", "somevalue");
-			config.save();
-		} catch (IOException | ConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return new ResponseEntity<String>("success", HttpStatus.OK);
-	}
 
 }

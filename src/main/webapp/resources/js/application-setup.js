@@ -295,8 +295,16 @@
             		alert("Kindly first validate Database configuration");
             		return false;
             	}
-            	
-                e.preventDefault();   // for stopping the default action of element 
+            	console.log(baseUrl)
+            	console.log(logFilePath)
+            	console.log(smtpPort)
+            	console.log(ldapHostName)
+            	console.log(ldapPort)
+            	console.log(ldapUserName)
+            	console.log(ldapBaseDN)
+            	console.log(ldapAdditionUserDN)
+                console.log(ldapAdministration);
+            	e.preventDefault();   // for stopping the default action of element 
                 if(baseUrl && logFilePath && smtpPort && dbHostName &&
                 		dbPort && dbUserName && dbPassword && dbName && ldapHostName &&
                 		ldapPort && ldapUserName && ldapPassword && ldapBaseDN && ldapAdditionUserDN
@@ -311,19 +319,37 @@
                             formData[input.attr("name")] = input.val()
                         });
                       });              
-                    console.log(JSON.stringify);
-                    $.ajax({
-                        type: 'post', // method attribute of form
-                        url: '/administrator/saveConfiguration',  // action attribute of form
-                        dataType : 'json',
-                        contentType : 'application/json',
-                    // convert form data to json format
-                        data : JSON.stringify(formData),
-                    });
+                    console.log(JSON.stringify(formData));
+                    
+                    $.post('/api/application-setup/saveConfiguration', formData, function(data){
+						alert("Saved");
+					}).fail(function(response){
+						alert("Error");
+						var json = JSON.parse(response.responseText);
+						$("#error_msg").html(json.message);
+					});
+                    
                 } else{
                 	alert('Fill all the mandatory fields to submit the form');
                 }
            });
-	    });
+
+            $('#inpDBHostName').trigger("keyup");		
+            $('#inpDBPort').trigger("keyup");		
+            $('#inpDBUserName').trigger("keyup");		
+            $('#inpDBPassword').trigger("keyup");		
+            $('#inpDBName').trigger("keyup");		
+            $('#inpLdapHostName').trigger("keyup");		
+            $('#inpLdapPort').trigger("keyup");		
+            $('#inpLdapUserName').trigger("keyup");		
+            $('#inpLdapPassword').trigger("keyup");		
+            $('#inpLdapBaseDN').trigger("keyup");		
+            $('#inpLdapAdditionalUserDN').trigger("keyup");		
+            $('#inpLdapAdministration').trigger("keyup");		
+            $('#inpBaseUrl').trigger("keyup");		
+            $('#inpLogFilePath').trigger("keyup");		
+            $('#inpSMTPServer').trigger("keyup");		
+            $('#inpSMTPPort').trigger("keyup");		
+        });
 
 	

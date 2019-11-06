@@ -364,7 +364,7 @@
 										</label>
 
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpBaseUrl" name = "baseUrl" class="form-control  asset-basics">
+											<input type="text" id="inpBaseUrl" name = "baseUrl" class="form-control  asset-basics" value="${baseUrl}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iBaseUrl" aria-hidden="true"></i>
@@ -381,7 +381,7 @@
 											<h5 class="m-0 pt-1">Log File Path</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLogFilePath" name = "logFilePath" class="form-control  asset-basics">
+											<input type="text" id="inpLogFilePath" name = "logFilePath" class="form-control  asset-basics" value="${logFilePath}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLogFilePath" aria-hidden="true"></i>
@@ -409,7 +409,7 @@
 											<h5 class="m-0 pt-1">SMTP Server </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPServer" class="form-control  asset-basics" name = "smtp.server">
+											<input type="text" id="inpSMTPServer" class="form-control  asset-basics" name = "smtp.server" value="${smtp_server}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iSMTPServer" aria-hidden="true"></i>
@@ -426,7 +426,7 @@
 											<h5 class="m-0 pt-1">SMTP port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPPort" class="form-control  asset-basics" name = "smtp.port">
+											<input type="text" id="inpSMTPPort" class="form-control  asset-basics" name = "smtp.port" value="${smtp_port}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2"  id="iSMTPPort" aria-hidden="true"></i>
@@ -443,7 +443,7 @@
 											<h5 class="m-0 pt-1">SMTP Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPUserName" class="form-control  asset-basics" name = "smtp.username">
+											<input type="text" id="inpSMTPUserName" class="form-control  asset-basics" name = "smtp.username" value="${smtp_username}">
 											<div class="input-group-append asset-ba	sics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id="iSMTPUserName" aria-hidden="true"></i>
@@ -460,7 +460,7 @@
 											<h5 class="m-0 pt-1">SMTP Password</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPPassword" class="form-control  asset-basics" name = "smtp.password">
+											<input type="text" id="inpSMTPPassword" class="form-control  asset-basics" name = "smtp.password" value="${smtp_password}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id = "inpSMTPPassword" aria-hidden="true"></i>
@@ -591,7 +591,7 @@
 											<h5 class="m-0 pt-1">Hostname </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapHostName" class="form-control  asset-basics" name = "ldap.hostname">
+											<input type="text" id="inpLdapHostName" class="form-control  asset-basics" name = "ldap.hostname" value="${ldap_host}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iLdapHostName" aria-hidden="true"></i>
@@ -611,7 +611,7 @@
 											<h5 class="m-0 pt-1">Port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapPort" class="form-control  asset-basics" name = "ldap.port">
+											<input type="text" id="inpLdapPort" class="form-control  asset-basics" name = "ldap.port" value="${ldap_port}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapPort" aria-hidden="true"></i>
@@ -628,7 +628,7 @@
 											<h5 class="m-0 pt-1">Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapUserName" class="form-control  asset-basics" name = "ldap.username">
+											<input type="text" id="inpLdapUserName" class="form-control  asset-basics" name = "ldap.username" value="${ldap_username}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapUserName" aria-hidden="true"></i>
@@ -653,7 +653,7 @@
 										</label>
 
 										<div class="input-group col-sm-8">
-											<input type="text" id="inpLdapPassword" class="form-control" name = "ldap.password">
+											<input type="text" id="inpLdapPassword" class="form-control" name = "ldap.password" value="${ldap_password}">
 											<div class="input-group-append">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iLdapPassword" aria-hidden="true"></i>
@@ -673,7 +673,7 @@
 											<h5 class="m-0 pt-1">Base DN</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapBaseDN" class="form-control  asset-basics" name = "ldap.basedn">
+											<input type="text" id="inpLdapBaseDN" class="form-control  asset-basics" name = "ldap.basedn" value="${ldap_basedn}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapBaseDN" aria-hidden="true"></i>
@@ -689,7 +689,7 @@
 											<h5 class="m-0 pt-1">Additional User DN</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapAdditionalUserDN" class="form-control  asset-basics" name = "ldap.additionaluserdn">
+											<input type="text" id="inpLdapAdditionalUserDN" class="form-control  asset-basics" name = "ldap.additionaluserdn" value="${ldap_userdn}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapAdditionalUserDN" aria-hidden="true"></i>
@@ -705,7 +705,7 @@
 											<h5 class="m-0 pt-1">Administration</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapAdministration" class="form-control  asset-basics" name = "ldap.administration">
+											<input type="text" id="inpLdapAdministration" class="form-control  asset-basics" name = "ldap.administration" value="${ldap_administration}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id = "iLdapAdministration" aria-hidden="true"></i>

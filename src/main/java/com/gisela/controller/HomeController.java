@@ -52,6 +52,9 @@ public class HomeController {
 			model.put("ldap_port", config.getOrDefault("ldap.port", ""));
 			model.put("ldap_username", config.getOrDefault("ldap.username", ""));
 			model.put("ldap_password", config.getOrDefault("ldap.password", ""));
+			model.put("ldap_basedn", config.getOrDefault("ldap.base.dn", ""));
+			model.put("ldap_userdn", config.getOrDefault("ldap.user.dn", ""));
+			model.put("ldap_administration", config.getOrDefault("ldap.administration", ""));
 
 			model.put("baseUrl", config.getOrDefault("baseUrl", ""));
 			model.put("logFilePath", config.getOrDefault("logFilePath", ""));

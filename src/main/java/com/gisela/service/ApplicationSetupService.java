@@ -130,13 +130,13 @@ public class ApplicationSetupService {
 	 * appConfigs.stream().map(ac -> appConfigRepository.save(ac)); }
 	 */
 
-	public boolean validateLdap(String host, Integer port, String username, String password) {
+	public boolean validateLdap(String host, Integer port, String baseDn, String userDn, String username, String password) {
 
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		env.put(Context.PROVIDER_URL, String.format("ldap://%s:%d/", host, port));
+		env.put(Context.PROVIDER_URL, String.format("ldap://%s:%d/%s", host, port, baseDn));
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-		env.put(Context.SECURITY_PRINCIPAL, username); // replace with user DN
+		env.put(Context.SECURITY_PRINCIPAL, String.format("%s=%s,%s", userDn, username, baseDn)); // replace with user DN
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
 		DirContext ctx = null;
@@ -145,6 +145,7 @@ public class ApplicationSetupService {
 	         ctx = new InitialDirContext(env);
 	         return true;
 		} catch (NamingException e) {
+			e.printStackTrace();
 	         throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");	         
 		}		
 
