@@ -1,8 +1,6 @@
 package com.gisela.controller.rest;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -13,14 +11,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gisela.entity.AppConfig;
-import com.gisela.entity.enums.AppConfigGroup;
 import com.gisela.exception.GiselaApplicationException;
 import com.gisela.service.ApplicationSetupService;
 
@@ -51,7 +45,6 @@ public class ApplicationSetupAPIController {
 	{
 		
 		applicationSetupService.setupDatabaseConfigration(host, port == null ? 0 : port, username, password, dbName);
-		
 		return ResponseEntity.ok().build();
 	}
 
@@ -60,8 +53,11 @@ public class ApplicationSetupAPIController {
 	@PostMapping(value = "/saveConfiguration")
 	public ResponseEntity<?> saveConfiguration(@RequestParam Map<String, String> request){
 		System.out.println("Coming");
+
 		PropertiesConfiguration config;
+		
 		try {
+
 			System.out.println("coming in properties");
 			
 			String ldapHost = request.get("ldap.hostname");
@@ -87,15 +83,7 @@ public class ApplicationSetupAPIController {
 			config.setProperty("ldap.user.dn", ldapAddUserDN);
 			config.setProperty("ldap.administration", ldapAdministration);
 			config.setProperty("ldap.valid", "true");
-			
-			/*
-			 * config.setProperty("ldap.url", String.format("ldap://%s:%s/%s", ldapHost,
-			 * ldapPort, StringUtils.defaultIfBlank(ldapBaseDN, "")));
-			 * config.setProperty("ldap.managerDN", String.format("uid=%s,ou=%s,%s",
-			 * ldapUsername, ldapAddUserDN, StringUtils.defaultIfBlank(ldapBaseDN, "")));
-			 * config.setProperty("ldap.managerPassword", ldapPassword);
-			 * config.setProperty("ldap.basedn", ldapBaseDN);
-			 */config.setProperty("ldap.additionaluserdn", ldapAddUserDN);
+			config.setProperty("ldap.additionaluserdn", ldapAddUserDN);
 
 			config.setProperty("baseUrl", request.get("baseUrl"));
 			config.setProperty("logFilePath", request.get("logFilePath"));
@@ -108,8 +96,8 @@ public class ApplicationSetupAPIController {
 			config.setProperty("somekey", "somevalue");
 			config.save();
 		} catch (IOException | ConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new GiselaApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurred while saving configuration");
 		}
 		
 		return ResponseEntity.ok().build();

@@ -20,6 +20,7 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.sql.DataSource;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
-import com.gisela.entity.AppConfig;
 import com.gisela.exception.GiselaApplicationException;
-import com.gisela.repository.AppConfigRepository;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -48,17 +47,12 @@ import com.zaxxer.hikari.HikariDataSource;
 @Service
 public class ApplicationSetupService {
 
-	@Autowired
-    private GenericWebApplicationContext context;
-	
 	@Value("${db.driverClassName}")
 	private String driverClassName;
 
 	@Value("${db.databaseUrl}")
 	private String databaseUrl;
 	
-
-	//@Autowired AppConfigRepository appConfigRepository;
 	
 	public void setupDatabaseConfigration(String host, int port, String username, String password, String db) {
 		
@@ -97,22 +91,17 @@ public class ApplicationSetupService {
 
 			new ScriptRunner(ds.getConnection()).runScript(new FileReader(new ClassPathResource("script/schema.sql").getFile()));
 
-			Properties props = new Properties();
-			props.setProperty("spring.datasource.db", db);
-			props.setProperty("spring.datasource.hostname", host);
-			props.setProperty("spring.datasource.port", port+"");
-			props.setProperty("spring.datasource.username", username);
-			props.setProperty("spring.datasource.password", password);
-			props.setProperty("spring.datasource.driverClassName", ds.getDriverClassName());
+			PropertiesConfiguration pconfig = new PropertiesConfiguration(new ClassPathResource("application.properties").getFile());
 
-			File dbPropertiesFile = new ClassPathResource("db.properties").getFile();
+			pconfig.setProperty("db.name", db);
+			pconfig.setProperty("db.hostname", host);
+			pconfig.setProperty("db.port", port+"");
+			pconfig.setProperty("db.username", username);
+			pconfig.setProperty("db.password", password);
+			pconfig.setProperty("db.driverClassName", ds.getDriverClassName());
 
-			if(!dbPropertiesFile.exists()) {
-				dbPropertiesFile.createNewFile();
-			}
-			
-			props.setProperty("db.valid", "true");
-			props.store(new FileOutputStream(dbPropertiesFile), "Database information");
+			pconfig.setProperty("db.valid", "true");
+			pconfig.save();
 			
 						
 		} catch (SQLException e) {
@@ -125,11 +114,6 @@ public class ApplicationSetupService {
 		
 	}
 	
-	/*
-	 * public void saveAppConfig(List<AppConfig> appConfigs) {
-	 * appConfigs.stream().map(ac -> appConfigRepository.save(ac)); }
-	 */
-
 	public boolean validateLdap(String host, Integer port, String baseDn, String userDn, String username, String password) {
 
 		Hashtable<String, String> env = new Hashtable<String, String>();

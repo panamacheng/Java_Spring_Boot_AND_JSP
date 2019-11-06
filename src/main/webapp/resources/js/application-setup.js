@@ -34,7 +34,7 @@
             var ldapBaseDN = false;
             var ldapAdditionUserDN = false;
             var ldapAdministration = false;
-            var dbValidated = false;
+
 	        $('#inpBaseUrl').keyup(function(){	 
 				validatBaseUrl(this.value);
 	        });
@@ -271,18 +271,24 @@
 				}
             }
 			
-			function validateDatabaseConfiguration(){
-				if(!dbValidated && dbHostName && dbPort && dbUserName && dbPassword && dbName){
-					var params = {"host": $("#inpDBHostName").val(), "port" : $("#inpDBPort").val(), "username": $("#inpDBUserName").val(), "password" : $("#inpDBPassword").val(), "databaseName" : $("#inpDBName").val()};
-					$.post('/api/application-setup/validate-db', params, function(data){
-						dbValidated = true;
-						alert("Database Validated");
-					}).fail(function(response){
-						dbValidated = false;
-						var json = JSON.parse(response.responseText);
-						$("#error_msg").html(json.message);
-						alert("Database not Validated");
-					});
+			function validateDatabaseConfiguration(){			
+				if(!dbValidated){
+					
+					if(dbHostName && dbPort && dbUserName && dbPassword && dbName){
+						var params = {"host": $("#inpDBHostName").val(), "port" : $("#inpDBPort").val(), "username": $("#inpDBUserName").val(), "password" : $("#inpDBPassword").val(), "databaseName" : $("#inpDBName").val()};
+						$.post('/api/application-setup/validate-db', params, function(data){
+							dbValidated = true;
+							alert("Database Validated");
+						}).fail(function(response){
+							dbValidated = false;
+							var json = JSON.parse(response.responseText);
+							$("#error_msg").html(json.message);
+							alert("Database not Validated");
+						});
+					}else{
+						alert("Kindly provide database configuration to load");
+					}
+
 				}
 			}
 			
@@ -291,7 +297,7 @@
             $('#submitForm').click(function(e) {
                 // reference to form object
             // var form = this;           
-            	if(dbValidated){
+            	if(!dbValidated){
             		alert("Kindly first validate Database configuration");
             		return false;
             	}
@@ -323,6 +329,7 @@
                     
                     $.post('/api/application-setup/saveConfiguration', formData, function(data){
 						alert("Saved");
+						document.location.href = "/";
 					}).fail(function(response){
 						alert("Error");
 						var json = JSON.parse(response.responseText);

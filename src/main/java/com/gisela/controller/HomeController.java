@@ -46,7 +46,6 @@ public class HomeController {
 			Properties config = new Properties();
 			Properties dbconfig = new Properties();
 			config.load(new ClassPathResource("application.properties").getInputStream());
-			dbconfig.load(new ClassPathResource("db.properties").getInputStream());
 
 			model.put("ldap_host", config.getOrDefault("ldap.host", ""));
 			model.put("ldap_port", config.getOrDefault("ldap.port", ""));
@@ -64,11 +63,11 @@ public class HomeController {
 			model.put("smtp_username", config.getOrDefault("smtp.username", ""));
 			model.put("smtp_password", config.getOrDefault("smtp.password", ""));
 
-			model.put("spring_datasource_db", dbconfig.getOrDefault("spring.datasource.db", ""));
-			model.put("spring_datasource_hostname", dbconfig.getOrDefault("spring.datasource.hostname", ""));
-			model.put("spring_datasource_port", dbconfig.getOrDefault("spring.datasource.port", ""));
-			model.put("spring_datasource_username", dbconfig.getOrDefault("spring.datasource.username", ""));
-			model.put("spring_datasource_password", dbconfig.getOrDefault("spring.datasource.password", ""));
+			model.put("spring_datasource_db", config.getOrDefault("db.name", ""));
+			model.put("spring_datasource_hostname", config.getOrDefault("db.hostname", ""));
+			model.put("spring_datasource_port", config.getOrDefault("db.port", ""));
+			model.put("spring_datasource_username", config.getOrDefault("db.username", ""));
+			model.put("spring_datasource_password", config.getOrDefault("db.password", ""));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
