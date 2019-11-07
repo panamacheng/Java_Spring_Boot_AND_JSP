@@ -34,6 +34,16 @@ public class ApplicationSetupAPIController {
 	private ApplicationSetupService applicationSetupService;
 
 
+	/**
+	 * The purpose of this API method to validate database configuration and save it into application.properties file
+	 * @param host
+	 * @param port
+	 * @param username
+	 * @param password
+	 * @param dbName
+	 * @param locale
+	 * @return HttpStatus.OK if success otherwise throw GiselaApplicationException with HttpStatus.BAD_REQUEST or HttpStatus.INTERNAL_SERVER_ERROR
+	 */
 	@PostMapping(value="/validate-db")
 	public ResponseEntity<?> validateDatabase(
 			@RequestParam("host") String host, 
@@ -49,7 +59,12 @@ public class ApplicationSetupAPIController {
 	}
 
 
-	
+	/**
+	 * 
+	 * The purpose of this API method to validate LDAP connection and save all configuration except db configuration into application.properties file
+	 * @param request
+	 * @return HttpStatus.OK if success otherwise throw GiselaApplicationException with HttpStatus.BAD_REQUEST or HttpStatus.INTERNAL_SERVER_ERROR
+	 */
 	@PostMapping(value = "/saveConfiguration")
 	public ResponseEntity<?> saveConfiguration(@RequestParam Map<String, String> request){
 		System.out.println("Coming");
@@ -71,7 +86,6 @@ public class ApplicationSetupAPIController {
 			if(!applicationSetupService.validateLdap(ldapHost, Integer.valueOf(ldapPort), ldapBaseDN, ldapAddUserDN, ldapUsername, ldapPassword)) {
 				throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");
 			}
-
 			
 			config = new PropertiesConfiguration(new ClassPathResource("application.properties").getFile());
 			
@@ -103,54 +117,4 @@ public class ApplicationSetupAPIController {
 		return ResponseEntity.ok().build();
 	}
 
-	
-	/*
-	 * @PostMapping(value="/save") public ResponseEntity<?> saveConfig(
-	 * 
-	 * @RequestParam("basic_base_url") String basicBaseUrl,
-	 * 
-	 * @RequestParam("basic_log_file_path") String basicLogFilePath,
-	 * 
-	 * @RequestParam("email_smtp_server") String emailSmtpServer,
-	 * 
-	 * @RequestParam("email_smtp_port") Integer emailSmtpPort,
-	 * 
-	 * @RequestParam("email_smtp_username") String emailSmtpUsername,
-	 * 
-	 * @RequestParam("email_smtp_password") String emailSmtpPassword,
-	 * 
-	 * @RequestParam("ldap_host") String ldapHost,
-	 * 
-	 * @RequestParam("ldap_port") Integer ldapPort,
-	 * 
-	 * @RequestParam("ldap_username") String ldapUsername,
-	 * 
-	 * @RequestParam("ldap_password") String ldapPassword) {
-	 * 
-	 * List<AppConfig> appConfigs = new ArrayList<>();
-	 * 
-	 * appConfigs.add(new AppConfig(AppConfigGroup.basic, "base_url",
-	 * basicBaseUrl)); appConfigs.add(new AppConfig(AppConfigGroup.basic,
-	 * "log_file_path", basicLogFilePath));
-	 * 
-	 * appConfigs.add(new AppConfig(AppConfigGroup.email, "smtp_server",
-	 * emailSmtpServer)); appConfigs.add(new AppConfig(AppConfigGroup.email,
-	 * "smtp_port", emailSmtpPort.toString())); appConfigs.add(new
-	 * AppConfig(AppConfigGroup.email, "smtp_username", emailSmtpUsername));
-	 * appConfigs.add(new AppConfig(AppConfigGroup.email, "smtp_password",
-	 * emailSmtpPassword));
-	 * 
-	 * appConfigs.add(new AppConfig(AppConfigGroup.ldap, "host", ldapHost));
-	 * appConfigs.add(new AppConfig(AppConfigGroup.ldap, "port",
-	 * ldapPort.toString())); appConfigs.add(new AppConfig(AppConfigGroup.ldap,
-	 * "username", ldapUsername)); appConfigs.add(new AppConfig(AppConfigGroup.ldap,
-	 * "password", ldapPassword));
-	 * 
-	 * if(applicationSetupService.validateLdap(ldapHost, ldapPort, ldapUsername,
-	 * ldapPassword)) { applicationSetupService.saveAppConfig(appConfigs); }
-	 * 
-	 * 
-	 * return ResponseEntity.ok().build(); }
-	 * 
-	 */
 }

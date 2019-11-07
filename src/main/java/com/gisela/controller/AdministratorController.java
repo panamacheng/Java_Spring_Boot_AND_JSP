@@ -68,24 +68,4 @@ public class AdministratorController {
 		return mv;
 	}
 	
-
-//	@PostMapping("/saveConfiguration")
-//	public ResponseEntity<String> saveConfiguration(@RequestBody Map<String, String> request){
-//		System.out.println("Coming");
-//		try (FileWriter fileWriter = new FileWriter("application.properties")){
-//			Properties properties = new Properties();
-//			for(Map.Entry<String, String> s:request.entrySet()) {
-//				System.out.println("value is:"+s.getValue());
-//				properties.setProperty(s.getKey(), s.getValue());
-//			}
-//			properties.store(fileWriter, "@author javier.vazquez");
-//		
-//			
-//		} catch(Exception e) {
-//			
-//		}
-//
-//		return new ResponseEntity<String>("success", HttpStatus.OK);
-//	}
-
 }
