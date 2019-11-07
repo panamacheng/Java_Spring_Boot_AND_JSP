@@ -67,11 +67,11 @@ public class ApplicationSetupAPIController {
 			String ldapBaseDN = request.get("ldap.basedn");
 			String ldapAddUserDN = request.get("ldap.additionaluserdn");
 			String ldapAdministration = request.get("ldap.administration");
-			/*
+
 			if(!applicationSetupService.validateLdap(ldapHost, Integer.valueOf(ldapPort), ldapBaseDN, ldapAddUserDN, ldapUsername, ldapPassword)) {
 				throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");
 			}
-			*/
+
 			
 			config = new PropertiesConfiguration(new ClassPathResource("application.properties").getFile());
 			

@@ -3,6 +3,7 @@ package com.gisela.configuration;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -66,7 +67,7 @@ public class SecurityConfiguration
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
-		// auth.authenticationProvider(LdapAuthenticationProvider());
+		 //auth.authenticationProvider(LdapAuthenticationProvider());
 	}
 
 	@Configuration
@@ -98,7 +99,9 @@ public class SecurityConfiguration
 		@Value("${ldap.administration}")
 		String ldapAdmistration = "389";
 
+
 		@Bean
+		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public LdapAuthoritiesPopulator ldapAuthoritiesPopulator() throws Exception {
 			DefaultLdapAuthoritiesPopulator ldapAuthoritiesPopulator = new DefaultLdapAuthoritiesPopulator(
 					ldapContextSource(), GROUP_SEARCH_BASE);
@@ -107,6 +110,7 @@ public class SecurityConfiguration
 		}
 
 		@Bean
+		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public DefaultSpringSecurityContextSource ldapContextSource() throws Exception {
 			String url = String.format("ldap://%s:%s/%s", ldapHost, ldapPort, ldapBaseDn);
 			DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(url);
@@ -116,6 +120,7 @@ public class SecurityConfiguration
 		}
 
 		@Bean
+		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public LdapUserSearch ldapUserSearch() throws Exception {
 			LdapUserSearch ldapUserSearch = new FilterBasedLdapUserSearch(USER_SEARCH_BASE, USER_SEARCH_FILTER,
 					ldapContextSource());
@@ -123,6 +128,7 @@ public class SecurityConfiguration
 		}
 
 		@Bean
+		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public LdapAuthenticator ldapAuthenticator() throws Exception {
 			BindAuthenticator authenticator = new BindAuthenticator(ldapContextSource());
 			authenticator.setUserSearch(ldapUserSearch());
@@ -130,6 +136,7 @@ public class SecurityConfiguration
 		}
 
 		@Bean
+		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public LdapAuthenticationProvider ldapAuthenticationProvider() throws Exception {
 			LdapAuthenticationProvider ldapAuthenticationProvider = new LdapAuthenticationProvider(ldapAuthenticator(),
 					ldapAuthoritiesPopulator());
@@ -139,9 +146,11 @@ public class SecurityConfiguration
 
 		protected void configure(HttpSecurity http) throws Exception
 		{
+
 			if(StringUtils.defaultIfBlank(ldapValid, "false").equals("true")) {
 				http.authenticationProvider(ldapAuthenticationProvider());
 			}
+
 				http.exceptionHandling().accessDeniedPage("/login?error").and()
 				.authorizeRequests()
 					.antMatchers("/login**").permitAll()
