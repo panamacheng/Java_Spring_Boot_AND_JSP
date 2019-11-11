@@ -27,7 +27,7 @@ import com.gisela.service.ApplicationSetupService;
  */
 
 @RestController
-@RequestMapping("/api/application-setup")
+@RequestMapping("/api/setup")
 public class ApplicationSetupAPIController {
 
 	@Autowired

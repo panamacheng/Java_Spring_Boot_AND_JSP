@@ -35,56 +35,56 @@
             var ldapAdditionUserDN = false;
             var ldapAdministration = false;
 
-	        $('#inpBaseUrl').keyup(function(){	 
+	        $('#inpBaseUrl').change(function(){	 
 				validatBaseUrl(this.value);
 	        });
-			$('#inpLogFilePath').keyup(function(){
+			$('#inpLogFilePath').change(function(){
 				validateLogFilePath(this.value);
 			});
-			$('#inpSMTPServer').keyup(function(){
+			$('#inpSMTPServer').change(function(){
 				validateSMTPServer(this.value);
 			});
-			$('#inpSMTPPort').keyup(function(){
+			$('#inpSMTPPort').change(function(){
 				validateSMTPPort(this.value);
 			});
-			$('#inpDBHostName').keyup(function(){
+			$('#inpDBHostName').change(function(){
 				validateDBHostName(this.value);
 			});
-			$('#inpDBPort').keyup(function(){
+			$('#inpDBPort').change(function(){
 				validateDBPort(this.value);
 			});
 
-			$('#inpDBUserName').keyup(function(){
+			$('#inpDBUserName').change(function(){
 				validateDBUserName(this.value);
 			});
-			$('#inpDBPassword').keyup(function(){
+			$('#inpDBPassword').change(function(){
 				validateDBPassword(this.value);
 			});
-			$('#inpDBName').keyup(function(){
+			$('#inpDBName').change(function(){
 				validateDBName(this.value);
 			});
 			$('#validateDBConfig').click(function(){
 				validateDatabaseConfiguration()
 			});
-			$('#inpLdapHostName').keyup(function(){
+			$('#inpLdapHostName').change(function(){
 				validateLdapHostName(this.value);
 			});
-			$('#inpLdapPort').keyup(function(){
+			$('#inpLdapPort').change(function(){
 				validateLdapPort(this.value);
 			});
-			$('#inpLdapUserName').keyup(function(){
+			$('#inpLdapUserName').change(function(){
 				validateLdapUserName(this.value);
 			});
-			$('#inpLdapPassword').keyup(function(){
+			$('#inpLdapPassword').change(function(){
 				validateLdapPassword(this.value);
 			});
-			$('#inpLdapBaseDN').keyup(function(){
+			$('#inpLdapBaseDN').change(function(){
 				validateLdapBaseDN(this.value);
 			});
-			$('#inpLdapAdditionalUserDN').keyup(function(){
+			$('#inpLdapAdditionalUserDN').change(function(){
 				validateLdapAdditionalUserDN(this.value);
 			});
-			$('#inpLdapAdministration').keyup(function(){
+			$('#inpLdapAdministration').change(function(){
 				validateLdapAdministration(this.value);
 			});
 	        function validatBaseUrl(value){
@@ -276,14 +276,18 @@
 					
 					if(dbHostName && dbPort && dbUserName && dbPassword && dbName){
 						var params = {"host": $("#inpDBHostName").val(), "port" : $("#inpDBPort").val(), "username": $("#inpDBUserName").val(), "password" : $("#inpDBPassword").val(), "databaseName" : $("#inpDBName").val()};
-						$.post('/api/application-setup/validate-db', params, function(data){
+						$.post('/api/setup/validate-db', params, function(data){
 							dbValidated = true;
 							alert("Database Validated");
 						}).fail(function(response){
 							dbValidated = false;
 							var json = JSON.parse(response.responseText);
 							$("#error_msg").html(json.message);
-							alert("Database not Validated");
+							$('html, body').animate({
+							    scrollTop: $("#error_msg").offset().top
+							  }, 1000)
+							
+							//alert("Database not Validated");
 						});
 					}else{
 						alert("Kindly provide database configuration to load");
@@ -301,15 +305,15 @@
             		alert("Kindly first validate Database configuration");
             		return false;
             	}
-            	console.log(baseUrl)
-            	console.log(logFilePath)
-            	console.log(smtpPort)
-            	console.log(ldapHostName)
-            	console.log(ldapPort)
-            	console.log(ldapUserName)
-            	console.log(ldapBaseDN)
-            	console.log(ldapAdditionUserDN)
-                console.log(ldapAdministration);
+//            	console.log(baseUrl)
+//            	console.log(logFilePath)
+//            	console.log(smtpPort)
+//            	console.log(ldapHostName)
+//            	console.log(ldapPort)
+//            	console.log(ldapUserName)
+//            	console.log(ldapBaseDN)
+//            	console.log(ldapAdditionUserDN)
+//                console.log(ldapAdministration);
             	e.preventDefault();   // for stopping the default action of element 
                 if(baseUrl && logFilePath && smtpPort && dbHostName &&
                 		dbPort && dbUserName && dbPassword && dbName && ldapHostName &&
@@ -325,13 +329,14 @@
                             formData[input.attr("name")] = input.val()
                         });
                       });              
-                    console.log(JSON.stringify(formData));
+
+//                	console.log(JSON.stringify(formData));
                     
-                    $.post('/api/application-setup/saveConfiguration', formData, function(data){
+                    $.post('/api/setup/saveConfiguration', formData, function(data){
 						alert("Saved");
 						document.location.href = "/";
 					}).fail(function(response){
-						alert("Error");
+						//alert("Error");
 						var json = JSON.parse(response.responseText);
 						$("#error_msg").html(json.message);
 					});
@@ -341,22 +346,22 @@
                 }
            });
 
-            $('#inpDBHostName').trigger("keyup");		
-            $('#inpDBPort').trigger("keyup");		
-            $('#inpDBUserName').trigger("keyup");		
-            $('#inpDBPassword').trigger("keyup");		
-            $('#inpDBName').trigger("keyup");		
-            $('#inpLdapHostName').trigger("keyup");		
-            $('#inpLdapPort').trigger("keyup");		
-            $('#inpLdapUserName').trigger("keyup");		
-            $('#inpLdapPassword').trigger("keyup");		
-            $('#inpLdapBaseDN').trigger("keyup");		
-            $('#inpLdapAdditionalUserDN').trigger("keyup");		
-            $('#inpLdapAdministration').trigger("keyup");		
-            $('#inpBaseUrl').trigger("keyup");		
-            $('#inpLogFilePath').trigger("keyup");		
-            $('#inpSMTPServer').trigger("keyup");		
-            $('#inpSMTPPort').trigger("keyup");		
+            $('#inpDBHostName').trigger("change");		
+            $('#inpDBPort').trigger("change");		
+            $('#inpDBUserName').trigger("change");		
+            $('#inpDBPassword').trigger("change");		
+            $('#inpDBName').trigger("change");		
+            $('#inpLdapHostName').trigger("change");		
+            $('#inpLdapPort').trigger("change");		
+            $('#inpLdapUserName').trigger("change");		
+            $('#inpLdapPassword').trigger("change");		
+            $('#inpLdapBaseDN').trigger("change");		
+            $('#inpLdapAdditionalUserDN').trigger("change");		
+            $('#inpLdapAdministration').trigger("change");		
+            $('#inpBaseUrl').trigger("change");		
+            $('#inpLogFilePath').trigger("change");		
+            $('#inpSMTPServer').trigger("change");		
+            $('#inpSMTPPort').trigger("change");		
         });
 
 	

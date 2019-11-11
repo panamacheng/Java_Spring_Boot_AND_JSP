@@ -36,9 +36,9 @@ public class ConfigurationFilter extends OncePerRequestFilter{
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			
-			boolean applicationSetupUrl = request.getServletPath().equals("/application-setup");
-			boolean validateDBUrl = request.getServletPath().equals("/api/application-setup/validate-db");
-			boolean saveConfigUrl = request.getServletPath().equals("/api/application-setup/saveConfiguration");
+			boolean applicationSetupUrl = request.getServletPath().equals("/setup");
+			boolean validateDBUrl = request.getServletPath().equals("/api/setup/validate-db");
+			boolean saveConfigUrl = request.getServletPath().equals("/api/setup/saveConfiguration");
 			boolean resourcesUrl = request.getServletPath().contains("resources");
 			boolean loginUrl = request.getServletPath().equals("/login");
 			
@@ -56,7 +56,7 @@ public class ConfigurationFilter extends OncePerRequestFilter{
 				}
 			} else {
 				URL url = new URL(request.getRequestURL().toString());
-				response.sendRedirect(url.getProtocol()+"://"+url.getAuthority()+"/application-setup");
+				response.sendRedirect(url.getProtocol()+"://"+url.getAuthority()+"/setup");
 			}
 
 		} catch (Exception e) {

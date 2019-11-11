@@ -28,14 +28,15 @@ public class HomeController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ModelAndView index(Locale locale)
+	public String index(Locale locale)
 	{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		return mv;
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("index");
+//		return mv;
+		return "redirect:/administrator";
 	}
 
-	@RequestMapping(value="/application-setup", method=RequestMethod.GET)
+	@RequestMapping(value="/setup", method=RequestMethod.GET)
 	public ModelAndView applicationSetup(Locale locale)
 	{
 		ModelAndView mv = new ModelAndView();
