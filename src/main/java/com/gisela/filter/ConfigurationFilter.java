@@ -50,13 +50,13 @@ public class ConfigurationFilter extends OncePerRequestFilter{
 				
 				if(!isAuthenticated && !loginUrl) {
 					URL url = new URL(request.getRequestURL().toString());
-					response.sendRedirect(url.getProtocol()+"://"+url.getAuthority()+"/login");
+					response.sendRedirect("/login");
 				}else {
 					chain.doFilter(request, response);
 				}
 			} else {
 				URL url = new URL(request.getRequestURL().toString());
-				response.sendRedirect(url.getProtocol()+"://"+url.getAuthority()+"/setup");
+				response.sendRedirect("/setup");
 			}
 
 		} catch (Exception e) {
