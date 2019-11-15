@@ -16,13 +16,13 @@
 	<meta name="author" content="Codrops" />
 	<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/resources/css/master.css">
-	<link rel="stylesheet" href="/resources/css/custom.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/master.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/custom.css">
 	<!-- <link rel="stylesheet" type="text/css" href="./../css/demo.css" /> -->
-	<link rel="stylesheet" type="text/css" href="/resources/css/login.css" />
-	<script type="text/javascript" src="/resources/js/modernizr.custom.26633.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css" />
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/modernizr.custom.26633.js"></script>
 	<noscript>
-		<link rel="stylesheet" type="text/css" href="/resources/css/fallback.css" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/fallback.css" />
 	</noscript>
 	<!--[if lt IE 9]>
 				<link rel="stylesheet" type="text/css" href="/resources/css/fallback.css" />
@@ -61,7 +61,7 @@
 	<section class="main">
 
 		<div id="ri-grid" class="ri-grid ri-grid-size-2">
-			<img class="ri-loading-image" style="margin:2.5rem 0px;" src="./../img/loading.gif" />
+			<img class="ri-loading-image" style="margin:2.5rem 0px;" src="<%=request.getContextPath() %>/resources/img/loading.gif" />
 			<a href="http://localhost:9090/EnViewIMF/login#">
 				<ul>
 					<li>
@@ -755,8 +755,8 @@
 		var $j = $.noConflict(true);
 	</script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.gridrotator.js"></script>
-	<script type="text/javascript" src="/resources/js/application-setup.js">
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.gridrotator.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/application-setup.js">
 	</script>
 </body>
 
