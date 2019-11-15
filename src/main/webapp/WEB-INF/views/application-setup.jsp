@@ -344,6 +344,7 @@
 
 	</section>
 	<div class="col  " style="background: #b6bec8;">
+		<form class="p-md-3" id="setupForm">
 		<div class="row" id="loginForm1">
 			<div class="col-lg-7 d-sm-flex justify-content-center" style="margin:3rem auto 3rem;">
 				<div class="card center-area">
@@ -357,17 +358,15 @@
 						</button>
 						<div id="collapseOne" class="collapse" aria-labelledby="headingOne">
 							<div class=" card card-body border-0 py-0">
-									<form class="p-md-3">
 									<div class="form-group row mb-2">
 										<label for="" class="col-md-4">
 											<h5 class="m-0 pt-1">Base Url </h5>
 										</label>
 
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpBaseUrl" name = "baseUrl" class="form-control  asset-basics" value="${baseUrl}">
+											<input type="url" id="inpBaseUrl" data-rule-required="true" data-rule-url="true" name = "baseUrl" class="form-control asset-basics" value="${baseUrl}">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iBaseUrl" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -381,10 +380,9 @@
 											<h5 class="m-0 pt-1">Log File Path</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLogFilePath" name = "logFilePath" class="form-control  asset-basics" value="${logFilePath}">
+											<input type="text" id="inpLogFilePath" name = "logFilePath" class="form-control  asset-basics" value="${logFilePath}" data-rule-required="true" data-rule-path="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLogFilePath" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -392,7 +390,6 @@
 											The path on the server that will be used to store log files
 										</small>
 									</div>
-								</form>
 							</div>
 						</div>
 
@@ -403,16 +400,14 @@
 
 						<div id="collapseTwo" class="collapse " aria-labelledby="headingTwo">
 							<div class=" card card-body border-0 py-0">
-								<form class="p-md-3">
 									<div class="form-group row mb-2">
 										<label for="" class="col-md-4">
 											<h5 class="m-0 pt-1">SMTP Server </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPServer" class="form-control  asset-basics" name = "smtp.server" value="${smtp_server}">
+											<input type="text" id="inpSMTPServer" class="form-control  asset-basics" name = "smtp.server" value="${smtp_server}" data-rule-required="true" data-rule-urlWithoutHttp="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iSMTPServer" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -426,10 +421,9 @@
 											<h5 class="m-0 pt-1">SMTP port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPPort" class="form-control  asset-basics" name = "smtp.port" value="${smtp_port}">
+											<input type="text" id="inpSMTPPort" class="form-control  asset-basics" name = "smtp.port" value="${smtp_port}" data-rule-required="true" data-rule-digit="true" min="1">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2"  id="iSMTPPort" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -443,10 +437,9 @@
 											<h5 class="m-0 pt-1">SMTP Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPUserName" class="form-control  asset-basics" name = "smtp.username" value="${smtp_username}">
+											<input type="text" id="inpSMTPUserName" class="form-control  asset-basics" name = "smtp.username" value="${smtp_username}" data-rule-required="true">
 											<div class="input-group-append asset-ba	sics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id="iSMTPUserName" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -460,10 +453,9 @@
 											<h5 class="m-0 pt-1">SMTP Password</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpSMTPPassword" class="form-control  asset-basics" name = "smtp.password" value="${smtp_password}">
+											<input type="text" id="inpSMTPPassword" class="form-control  asset-basics" name = "smtp.password" value="${smtp_password}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id = "inpSMTPPassword" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -472,7 +464,6 @@
 										</small>
 									</div>
 
-								</form>
 							</div>
 						</div>
 
@@ -482,16 +473,14 @@
 
 						<div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
 							<div class=" card card-body border-0 py-0">
-								<form class="p-md-3">
 									<div class="form-group row mb-2">
 										<label for="" class="col-md-4">
 											<h5 class="m-0 pt-1">Hostname </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBHostName" class="form-control  asset-basics" name = "spring.datasource.hostname" value="${spring_datasource_hostname}">
+											<input type="text" id="inpDBHostName" class="form-control  asset-basics" name = "spring.datasource.hostname" value="${spring_datasource_hostname}" data-rule-urlWithoutHttp="true" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iDBHostName" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -505,10 +494,9 @@
 											<h5 class="m-0 pt-1">Port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBPort" class="form-control  asset-basics" name = "spring.datasource.port" value="${spring_datasource_port}">
+											<input type="text" id="inpDBPort" class="form-control  asset-basics" name = "spring.datasource.port" value="${spring_datasource_port}" data-rule-required="true" data-rule-digit="true" min="1">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" aria-hidden="true" id="iDBPort"></i>
 												</span>
 											</div>
 										</div>
@@ -522,10 +510,9 @@
 											<h5 class="m-0 pt-1">Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" class="form-control  asset-basics" id ="inpDBUserName" name = "spring.datasource.username" value="${spring_datasource_username}">
+											<input type="text" class="form-control  asset-basics" id ="inpDBUserName" name = "spring.datasource.username" value="${spring_datasource_username}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id ="iDBUserName" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -540,10 +527,9 @@
 											<passwor></passwor>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBPassword" class="form-control  asset-basics" name = "spring.datasource.password" value="${spring_datasource_password}">
+											<input type="text" id="inpDBPassword" class="form-control  asset-basics" name = "spring.datasource.password" value="${spring_datasource_password}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2"  id = "iDBPassword" aria-hidden="true"></i>
 												</span>
 												
 											</div>
@@ -557,10 +543,9 @@
 											<h5 class="m-0 pt-1">Database Name</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpDBName" class="form-control  asset-basics" name = "spring.datasource.name" value="${spring_datasource_db}">
+											<input type="text" id="inpDBName" class="form-control  asset-basics" name = "spring.datasource.name" value="${spring_datasource_db}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iDBName" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -570,11 +555,11 @@
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<button id="validateDBConfig" class="btn btn-primary float-right" type="button" role="button">Load</button>
+											<button id="validateDBConfig" class="btn btn-primary float-right" type="button" role="button" onclick="validateDatabaseConfiguration()">Test</button>
 										</div>
 									</div>
 
-								</form>
+								
 							</div>
 						</div>
 
@@ -585,16 +570,15 @@
 
 						<div id="collapseFour" class="collapse " aria-labelledby="headingFour">
 							<div class=" card card-body border-0 py-0">
-								<form class="p-md-3">
+								
 									<div class="form-group row mb-2">
 										<label for="" class="col-md-4">
 											<h5 class="m-0 pt-1">Hostname </h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapHostName" class="form-control  asset-basics" name = "ldap.hostname" value="${ldap_host}">
+											<input type="text" id="inpLdapHostName" class="form-control  asset-basics" name = "ldap.hostname" value="${ldap_host}" data-rule-required="true" data-rule-urlWithoutHttp="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iLdapHostName" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -611,10 +595,9 @@
 											<h5 class="m-0 pt-1">Port</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapPort" class="form-control  asset-basics" name = "ldap.port" value="${ldap_port}">
+											<input type="text" id="inpLdapPort" class="form-control  asset-basics" name = "ldap.port" value="${ldap_port}" data-rule-required="true" data-rule-digit="true" min="1">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapPort" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -628,7 +611,7 @@
 											<h5 class="m-0 pt-1">Username</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapUserName" class="form-control  asset-basics" name = "ldap.username" value="${ldap_username}">
+											<input type="text" id="inpLdapUserName" class="form-control  asset-basics" name = "ldap.username" value="${ldap_username}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapUserName" aria-hidden="true"></i>
@@ -653,7 +636,7 @@
 										</label>
 
 										<div class="input-group col-sm-8">
-											<input type="text" id="inpLdapPassword" class="form-control" name = "ldap.password" value="${ldap_password}">
+											<input type="text" id="inpLdapPassword" class="form-control" name = "ldap.password" value="${ldap_password}" data-rule-required="true">
 											<div class="input-group-append">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
 													<i class="fa bg-danger text-white fa-exclamation  p-2 rounded-circle ml-2" id = "iLdapPassword" aria-hidden="true"></i>
@@ -673,10 +656,9 @@
 											<h5 class="m-0 pt-1">Base DN</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapBaseDN" class="form-control  asset-basics" name = "ldap.basedn" value="${ldap_basedn}">
+											<input type="text" id="inpLdapBaseDN" class="form-control  asset-basics" name = "ldap.basedn" value="${ldap_basedn}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapBaseDN" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -689,10 +671,9 @@
 											<h5 class="m-0 pt-1">Additional User DN</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapAdditionalUserDN" class="form-control  asset-basics" name = "ldap.additionaluserdn" value="${ldap_userdn}">
+											<input type="text" id="inpLdapAdditionalUserDN" class="form-control  asset-basics" name = "ldap.additionaluserdn" value="${ldap_userdn}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-exclamation text-white bg-danger  p-2 rounded-circle ml-2" id = "iLdapAdditionalUserDN" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -705,10 +686,9 @@
 											<h5 class="m-0 pt-1">Administration</h5>
 										</label>
 										<div class="input-group col-md-8 mb-2">
-											<input type="text" id="inpLdapAdministration" class="form-control  asset-basics" name = "ldap.administration" value="${ldap_administration}">
+											<input type="text" id="inpLdapAdministration" class="form-control  asset-basics" name = "ldap.administration" value="${ldap_administration}" data-rule-required="true">
 											<div class="input-group-append asset-basics">
 												<span class="input-group-text bg-transparent p-0 rounded border-0">
-													<i class="fa fa-check text-white bg-success  p-2 rounded-circle ml-2" id = "iLdapAdministration" aria-hidden="true"></i>
 												</span>
 											</div>
 										</div>
@@ -718,11 +698,14 @@
 										</small>
 									</div>
 
-								</form>
+								
 							</div>
 						</div>
-						<div class="alert alert-danger" role="alert">
+						<div class="alert alert-danger" role="alert" id="error_cont" style="display: none;">
 							<p class="m-0" id="error_msg">Example error message</p>
+						</div>
+						<div class="alert alert-success" role="alert" id="success_cont"  style="display: none;">
+							<p class="m-0" id="success_msg">Example Success message</p>
 						</div>
 						<div class="row">
 							<div class="col-12">
@@ -733,6 +716,7 @@
 				</div>
 			</div>
 		</div>
+	</form>
 
 	</div>
 	<div class="container-fluid">
@@ -746,17 +730,24 @@
 
 
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js " integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh "
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh "
 	 crossorigin="anonymous "></script>
+	 
+	 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js " integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ "
 	 crossorigin="anonymous "></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/application-setup.js">
+
 	<script type="text/javascript">
 		var $j = $.noConflict(true);
 	</script>
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.gridrotator.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/application-setup.js">
+
 	</script>
 </body>
 

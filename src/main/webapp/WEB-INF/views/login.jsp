@@ -16,11 +16,11 @@
     <meta name="author" content="Codrops" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<c:url value="/resources/css/master.css" />" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css" />" />
-    <script type="text/javascript" src="<c:url value="/resources/js/modernizr.custom.26633.js" />" ></script>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/master.css" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css" />
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/modernizr.custom.26633.js" ></script>
     <noscript>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/fallback.css" />" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/fallback.css" />
     </noscript>
 
 </head>
@@ -32,7 +32,7 @@
     <section class="main"> 
 
         <div id="ri-grid" class="ri-grid ri-grid-size-2">
-            <img class="ri-loading-image" style="margin:2.5rem 0px;" src="<c:url value="/resources/img/loading.gif" />" >"
+            <img class="ri-loading-image" style="margin:2.5rem 0px;" src="<%=request.getContextPath() %>/resources/img/loading.gif" >"
             <a href="http://localhost:9090/EnViewIMF/login#">
                 <ul>
                     <li>
@@ -350,7 +350,7 @@
                         </div>
 						
                         <div class="ml-3">
-                            <img src="<c:url value="/resources/img/icnAppIMG.png" />" style="margin-top: -15px">
+                            <img src="<%=request.getContextPath() %>/resources/img/icnAppIMG.png" style="margin-top: -15px">
                         </div>
                     </div>
                 </div>
@@ -361,7 +361,7 @@
     <div class="container-fluid">
         <div class="col-12 py-3 d-sm-flex justify-content-between align-items-center">
             <div class=" text-white float-sm-left text-center my-2"> &#169; Navaera Sciences, LLC</div>
-            <div class=" text-white float-sm-left text-center my-2">  <img src="<c:url value="/resources/img/nlogo.png" />" /></div>
+            <div class=" text-white float-sm-left text-center my-2">  <img src="<%=request.getContextPath() %>/resources/img/nlogo.png" /></div>
         </div>
 
     </div>
@@ -375,7 +375,7 @@
         var $j = $.noConflict(true);
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/jquery.gridrotator.js" />" ></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.gridrotator.js" ></script>
     <script type="text/javascript">
         $(function () {
             $('#ri-grid').gridrotator({

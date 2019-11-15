@@ -13,12 +13,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/resources/vendor/chosen_v1.8.2/chosen.css">
-<link rel="stylesheet" href="/resources/css/jqx.base.css" type="text/css" />
-<link rel="stylesheet" href="/resources/css/jqxGridStyle.css">
-<link rel="stylesheet" href="/resources/css/master.css">
-<link rel="stylesheet" href="/resources/css/custom.css">
-<link rel="stylesheet" href="/resources/css/image-uploader.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/vendor/chosen_v1.8.2/chosen.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/jqxGridStyle.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/master.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/custom.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/image-uploader.css">
 <style>
 
 .dropdown-item{
@@ -96,7 +96,7 @@
 				<div class="btn-group ">
 					<button type="button" class="btn btn-light rounded border-0 p-0" data-toggle="dropdown" aria-expanded="false">
 						<!-- <i class="fa fa-user-o" aria-hidden="true"></i> -->
-						<img src="/resources/img/avatar.PNG" height="35px"/>
+						<img src="<%=request.getContextPath() %>/resources/img/avatar.PNG" height="35px"/>
 					</button>
 					<div class="header dropdown-menu dropdown-menu-right pt-0">
 						<h6 style="padding: 10px 20px 10px; color: #333; background: #efefef;">Manglesh R. Yadav</h6>
@@ -903,7 +903,7 @@
 	 crossorigin="anonymous "></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js " integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ "
 	 crossorigin="anonymous "></script>
-	<script src="/resources/js/index.js "></script>
+	<script src="<%=request.getContextPath() %>/resources/js/index.js "></script>
 
 </body>
 

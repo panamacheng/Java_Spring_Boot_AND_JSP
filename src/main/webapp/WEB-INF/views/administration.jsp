@@ -13,12 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/vendor/chosen_v1.8.2/chosen.css">
-    <link rel="stylesheet" href="/resources/css/jqx.base.css" type="text/css" />
-    <link rel="stylesheet" href="/resources/css/jqxGridStyle.css">
-    <link rel="stylesheet" href="/resources/css/master.css">
-    <link rel="stylesheet" href="/resources/css/custom.css">
-    <link rel="stylesheet" href="/resources/css/image-uploader.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/vendor/chosen_v1.8.2/chosen.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/jqxGridStyle.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/master.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/custom.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/image-uploader.css">
     <style>
 
         .dropdown-item{
@@ -57,7 +57,7 @@
                     <button type="button" class="btn btn-light rounded border-0 p-0" data-toggle="dropdown"
                         aria-expanded="false">
                         <!-- <i class="fa fa-user-o" aria-hidden="true"></i> -->
-                        <img src="/resources/img/avatar.PNG" height="35px" />
+                        <img src="<%=request.getContextPath() %>/resources/img/avatar.PNG" height="35px" />
                     </button>
                     <div class="header dropdown-menu dropdown-menu-right pt-0">
                         <h6 style="padding: 10px 20px 10px; color: #333; background: #efefef;">Manglesh R. Yadav</h6>
@@ -178,7 +178,7 @@
                                         <a class="nav-link px-2 " href="administration.jsp">Administration</a>
                                     </li>
                                 </ul>
-                                <img class=" " src="./../img/smLogoDark.png">
+                                <img class=" " src="<%=request.getContextPath() %>/resources/img/smLogoDark.png">
                             </div>
                         </div>
                     </div>
@@ -195,23 +195,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js " integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ "
         crossorigin="anonymous "></script>
 
-    <script type="text/javascript" src="/resources/js/grid/jqxcore.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxdata.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxbuttons.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxmenu.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxlistbox.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxdropdownlist.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.sort.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.pager.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.selection.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.edit.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.columnsresize.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxpanel.js"></script>
-    <script type="text/javascript" src="/resources/js/grid/jqxgrid.filter.js"></script>
-    <script src="/resources/js/index.js "></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxcore.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxdata.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxbuttons.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxmenu.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxlistbox.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxpanel.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/grid/jqxgrid.filter.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/index.js "></script>
 
 </body>
 
