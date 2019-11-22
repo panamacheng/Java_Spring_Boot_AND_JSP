@@ -23,6 +23,8 @@ import javax.sql.DataSource;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -32,6 +34,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
+import com.gisela.GiselaApplication;
 import com.gisela.exception.GiselaApplicationException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -47,6 +50,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @Service
 public class ApplicationSetupService {
 
+	private static Logger log = LoggerFactory.getLogger(ApplicationSetupService.class);
+	
 	@Value("${db.driverClassName}")
 	private String driverClassName;
 
@@ -123,14 +128,18 @@ public class ApplicationSetupService {
 		env.put(Context.SECURITY_PRINCIPAL, String.format("%s=%s,%s", userDn, username, baseDn)); // replace with user DN
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
+		log.debug("Here is the configuration for LDAP");
+		log.debug(env.toString());
+		
 		DirContext ctx = null;
 		
 		try {
 	         ctx = new InitialDirContext(env);
 	         return true;
 		} catch (NamingException e) {
+			log.error(e.getMessage(), e);
 			e.printStackTrace();
-	         throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration");	         
+	         throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration: " + e.getMessage());	         
 		}		
 
 	}
