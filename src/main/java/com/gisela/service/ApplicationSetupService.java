@@ -129,7 +129,9 @@ public class ApplicationSetupService {
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
 		log.debug("Here is the configuration for LDAP");
-		log.debug(env.toString());
+		log.debug("Provider URL : {}", env.get(Context.PROVIDER_URL));
+		log.debug("Security Principal/Bind User: {}", env.get(Context.SECURITY_PRINCIPAL));
+		log.debug("Password: {}", env.get(Context.SECURITY_CREDENTIALS));
 		
 		DirContext ctx = null;
 		
@@ -138,8 +140,7 @@ public class ApplicationSetupService {
 	         return true;
 		} catch (NamingException e) {
 			log.error(e.getMessage(), e);
-			e.printStackTrace();
-	         throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration: " + e.getMessage());	         
+	        throw new GiselaApplicationException(HttpStatus.BAD_REQUEST, "Unable to validate LDAP configuration: " + e.getMessage());	         
 		}		
 
 	}
