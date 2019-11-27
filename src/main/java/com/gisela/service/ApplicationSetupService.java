@@ -125,7 +125,7 @@ public class ApplicationSetupService {
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.PROVIDER_URL, String.format("ldap://%s:%d/%s", host, port, baseDn));
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-		env.put(Context.SECURITY_PRINCIPAL, String.format("%s=%s,%s", userDn, username, baseDn)); // replace with user DN
+		env.put(Context.SECURITY_PRINCIPAL, String.format("cn=%s,CN=%s,%s", username, userDn, baseDn)); // replace with user DN
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
 		log.debug("Here is the configuration for LDAP");
