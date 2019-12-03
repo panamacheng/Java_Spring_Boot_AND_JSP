@@ -1,5 +1,7 @@
 package com.gisela.configuration;
 
+import javax.naming.Context;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -114,7 +116,7 @@ public class SecurityConfiguration
 		public DefaultSpringSecurityContextSource ldapContextSource() throws Exception {
 			String url = String.format("ldap://%s:%s/%s", ldapHost, ldapPort, ldapBaseDn);
 			DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(url);
-			contextSource.setUserDn(String.format("%s=%s,%s", ldapUserDn, ldapUsername, ldapBaseDn));
+			contextSource.setUserDn(String.format("cn=%s,CN=%s,%s", ldapUsername, ldapUserDn, ldapBaseDn));
 			contextSource.setPassword(ldapPassword);
 			return contextSource;
 		}
