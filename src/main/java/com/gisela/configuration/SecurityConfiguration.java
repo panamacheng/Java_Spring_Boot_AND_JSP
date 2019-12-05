@@ -158,7 +158,8 @@ public class SecurityConfiguration
 				.and()
 				.logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-					.logoutSuccessUrl("/login?logout").and().cors().and().csrf().disable();
+					.logoutSuccessUrl("/login?logout")
+				.and().cors().and().csrf().disable();
 		}
 
 		
