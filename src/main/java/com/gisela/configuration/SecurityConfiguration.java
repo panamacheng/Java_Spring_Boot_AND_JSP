@@ -1,34 +1,48 @@
 package com.gisela.configuration;
 
-import javax.naming.Context;
-
-import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
-import org.springframework.security.ldap.authentication.BindAuthenticator;
-import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
-import org.springframework.security.ldap.authentication.LdapAuthenticator;
-import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
-import org.springframework.security.ldap.search.LdapUserSearch;
-import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
-import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.gisela.ldap.CustomLdapUserDetailsContextMapper;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration
 {
+
+	private static Logger log = LoggerFactory.getLogger(SecurityConfiguration.class);
+	
+	@Value("${ldap.valid}")
+	String ldapValid = "false";
+
+	@Value("${ldap.host}")
+	String ldapHost = "localhost";
+
+	@Value("${ldap.port}")
+	String ldapPort = "389";
+
+	@Value("${ldap.username}")
+	String ldapUsername = "389";
+
+	@Value("${ldap.password}")
+	String ldapPassword = "389";
+
+	@Value("${ldap.base.dn}")
+	String ldapBaseDn = "389";
+	
+	@Value("${ldap.user.dn}")
+	String ldapUserDn = "389";
+
+	@Value("${ldap.administration}")
+	String ldapAdmistration = "389";
 
 	@SuppressWarnings("unused")
 	private static String GROUP_SEARCH_BASE;
@@ -66,42 +80,14 @@ public class SecurityConfiguration
 		USER_SEARCH_FILTER = property;
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
-	{
-		 //auth.authenticationProvider(LdapAuthenticationProvider());
-	}
 
 	@Configuration
 	@Order(1)
 	public static class MVCWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter
 	{
-
-		@Value("${ldap.valid}")
-		String ldapValid = "false";
-
-		@Value("${ldap.host}")
-		String ldapHost = "localhost";
-
-		@Value("${ldap.port}")
-		String ldapPort = "389";
-
-		@Value("${ldap.username}")
-		String ldapUsername = "389";
-
-		@Value("${ldap.password}")
-		String ldapPassword = "389";
-
-		@Value("${ldap.base.dn}")
-		String ldapBaseDn = "389";
 		
-		@Value("${ldap.user.dn}")
-		String ldapUserDn = "389";
-
-		@Value("${ldap.administration}")
-		String ldapAdmistration = "389";
-
-
+		@Autowired LDAPAuthProvider ldapAuthProvider;
+		/*
 		@Bean
 		@ConditionalOnProperty(name = "ldap.valid", havingValue = "true")
 		public LdapAuthoritiesPopulator ldapAuthoritiesPopulator() throws Exception {
@@ -145,13 +131,17 @@ public class SecurityConfiguration
 			ldapAuthenticationProvider.setUserDetailsContextMapper(new CustomLdapUserDetailsContextMapper());
 			return ldapAuthenticationProvider;
 		}
-
+		 */
+		
+		
 		protected void configure(HttpSecurity http) throws Exception
 		{
 
+			/*
 			if(StringUtils.defaultIfBlank(ldapValid, "false").equals("true")) {
 				http.authenticationProvider(ldapAuthenticationProvider());
 			}
+			*/
 
 				http.exceptionHandling().accessDeniedPage("/login?error").and()
 				.authorizeRequests()
@@ -170,5 +160,15 @@ public class SecurityConfiguration
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 					.logoutSuccessUrl("/login?logout").and().cors().and().csrf().disable();
 		}
+
+		
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			// TODO Auto-generated method stub
+			auth.authenticationProvider(ldapAuthProvider);
+		}
 	}
+	
+	
+	
 }
